@@ -10,9 +10,9 @@ const bot = new TelegramBot(token, {polling: true});
 
 bot.onText(/\/start/, (msg) => {
     
-  bot.sendMessage(msg.chat.id, "Welcome", {
+  bot.sendMessage(msg.chat.id, "Привет! Вы можете воспользоваться этими командами:\n/find: <Текст> - Поможет найти песню по названию, исполнителю, автору;\n/text <id песни> - Поможет вам найти текст песни по ее id.", {
   "reply_markup": {
-      "keyboard": [["Sample text", "Second sample"],   ["Чарт Топ-10 🇺🇸"], ["Чарт Топ-10 🇷🇺"]]
+      "keyboard": [["Чарт Топ-10 🇺🇸"], ["Чарт Топ-10 🇷🇺"]]
       }
   });
       
