@@ -112,6 +112,7 @@ bot.onText(/\/text (.+)/, async (msg, match) => {
 
 
   bot.onText(/\/find (.+)/, async (msg, match) => {
+    try {
     console.log(match);
     const resp = match[1];
     let size = 5
@@ -134,6 +135,10 @@ bot.onText(/\/text (.+)/, async (msg, match) => {
       bot.sendMessage(chatId, `=========${index + 1}=========\nНазвание: ${findArr.message.body.track_list[index].track.track_name}\nИсполнитель: ${findArr.message.body.track_list[index].track.artist_name}\nАльбом: ${findArr.message.body.track_list[index].track.album_name}\nId песни: ${findArr.message.body.track_list[index].track.track_id}\nБольше информации здесь: ${findArr.message.body.track_list[index].track.track_share_url}`);
       index += 1
     }, 300)
+  }
+  catch (err) {
+    console.log(err);  
+  }
   });
   
   
