@@ -68,9 +68,6 @@ bot.onText(/\/start/, (msg) => {
     });
 // Matches "/echo [whatever]"
 bot.onText(/\/echo (.+)/, (msg, match) => {
-  // 'msg' is the received Message from Telegram
-  // 'match' is the result of executing the regexp above on the text content
-  // of the message
 
   const chatId = msg.chat.id;
   const resp = match[1]; // the captured "whatever"
@@ -82,22 +79,9 @@ async function lyrics () {
   let text = await music.trackLyrics({track_id:197246819})
   return text
  }
-// Listen for any kind of message. There are different kinds of
-// messages.
-// bot.on('message', async (msg) => {
-//   const chatId = msg.chat.id;
-
-//   // console.log(eee.message.body.lyrics.lyrics_body);
-
-//   // send a message to the chat acknowledging receipt of their message
-//   const eee = await lyrics()
-  
-//   bot.sendMessage(chatId, eee.message.body.lyrics.lyrics_body)
-// })
-
 
 bot.onText(/\/text (.+)/, async (msg, match) => {
-  console.log(match);
+  // console.log(match);
   
   const resp = match[1];
   async function lyrics (resp) {
@@ -106,8 +90,14 @@ bot.onText(/\/text (.+)/, async (msg, match) => {
   }
   const eee = await lyrics(resp)
   const chatId = msg.chat.id;
+  // console.log(eee.message.body);
   
+  if (eee.message.body.lyrics) {
     bot.sendMessage(chatId, eee.message.body.lyrics.lyrics_body);
+  }
+  else {
+    bot.sendMessage(chatId, 'К сожалению, у этой песни нету текста');
+  }
   });
 
 
