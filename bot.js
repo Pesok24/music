@@ -1,9 +1,9 @@
 const TelegramBot = require('node-telegram-bot-api');
-let music = require('musicmatch')({apikey:"52d6ace43232f2a871e699dc324ffbe8"});
+let music = require('musicmatch')({apikey: process.env.MUSIC});
 
 
 // replace the value below with the Telegram token you receive from @BotFather
-const token = '1209283272:AAFTDTbBxr1-JdkdlJGoYsxLPwiTfhxWRsc';
+const token = process.env.TG;
 
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {polling: true});
