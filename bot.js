@@ -1,9 +1,9 @@
 const TelegramBot = require('node-telegram-bot-api');
-let music = require('musicmatch')({apikey: process.env.MUSIC});
+let music = require('musicmatch')({apikey: '52d6ace43232f2a871e699dc324ffbe8'});
 
 
 // replace the value below with the Telegram token you receive from @BotFather
-const token = process.env.TG;
+const token = '1209283272:AAFTDTbBxr1-JdkdlJGoYsxLPwiTfhxWRsc';
 
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {polling: true});
@@ -32,12 +32,10 @@ bot.onText(/\/start/, (msg) => {
       return resp
       }
       const findArr = await chart()
-      console.log(findArr.message.body.track_list);
       // for (let index = 0; index < findArr.message.body.track_list.length; index++) {
         let counter = 0
       let interval = setInterval(() => {
         if (counter > 8) {
-          // console.log(FEOFEOFOEFJ);
           clearInterval(interval)
         }
         bot.sendMessage(chatId, `=========${counter + 1}=========\nНазвание: ${findArr.message.body.track_list[counter].track.track_name}\nИсполнитель: ${findArr.message.body.track_list[counter].track.artist_name}\nАльбом: ${findArr.message.body.track_list[counter].track.album_name}\nId песни: ${findArr.message.body.track_list[counter].track.track_id}\nБольше информации здесь: ${findArr.message.body.track_list[counter].track.track_share_url}`);
@@ -53,7 +51,6 @@ bot.onText(/\/start/, (msg) => {
       return resp
       }
       const findArr = await chart()
-      console.log(findArr.message.body.track_list);
       // for (let index = 0; index < findArr.message.body.track_list.length; index++) {
         let counter = 0
       let interval = setInterval(() => {
@@ -81,7 +78,6 @@ async function lyrics () {
  }
 
 bot.onText(/\/text (.+)/, async (msg, match) => {
-  // console.log(match);
   
   const resp = match[1];
   async function lyrics (resp) {
